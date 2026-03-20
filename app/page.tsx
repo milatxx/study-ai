@@ -514,7 +514,16 @@ function ProgressView({ state }: { state: AppState }) {
             <BarChart data={chartData} barCategoryGap="28%">
               <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: T.textMuted, fontSize: 11 }} />
               <YAxis hide />
-              <Tooltip contentStyle={{ background: T.surfaceRaised, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12, color: T.text }} formatter={(v: number) => [`${v} min`, "Focus"]} cursor={{ fill: "rgba(255,255,255,0.02)" }} />
+              <Tooltip
+  contentStyle={{
+    background: T.surfaceRaised,
+    border: `1px solid ${T.border}`,
+    borderRadius: 8,
+    fontSize: 12,
+    color: T.text
+  }}
+  formatter={(value: any) => [`${value ?? 0} min`, "Focus"]}
+/>
               <Bar dataKey="mins" radius={[4, 4, 0, 0] as any} maxBarSize={32}>
                 {chartData.map((d, i) => (
                   <Cell key={i} fill={d.isToday ? T.accent : d.mins > 0 ? "rgba(129,140,248,0.35)" : "rgba(255,255,255,0.04)"} />
